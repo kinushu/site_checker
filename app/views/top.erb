@@ -1,5 +1,14 @@
 <h1>SiteMapChecker</h1>
 
+<form action="/" method="get">
+<p>
+URL：<input type="text" name="url" value="<%== @url.to_s %>" size="80">
+</p>
+<p>
+<input type="submit" value="送信">
+</p>
+</form>
+
 <% if @res %>
 
 <h2>
