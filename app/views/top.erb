@@ -23,7 +23,8 @@ URL：<input type="text" name="url" value="<%== @url.to_s %>" size="80">
 	@res[:links].each do |href,link|
 %>
 	<tr>
-		<td><a href="<%== link.real_href %>"><%== href %></a></td>
+		<td><a target="_blank" href="/?url=<%== link.real_href %>">check</a></td>
+		<td><a target="_blank" href="<%== link.real_href %>"><%== href %></a></td>
 		<td><%== link.text %></td>
 	</tr>
 
