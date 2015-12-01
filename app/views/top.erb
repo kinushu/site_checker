@@ -1,1 +1,20 @@
- TOP画面
+<h1>SiteMapChecker</h1>
+
+<h2>
+<a href="<%== @res[:url] %>">
+<%== @res[:title] %><br>
+<%== @res[:url] %>
+</a>
+</h2>
+
+<table border=1 >
+<%
+	@res[:links].each do |href,value|
+%>
+	<tr>
+		<td><a href="<%== href %>"><%== href %></a></td>
+		<td><%== value[:text] %></td>
+	</tr>
+
+<% end %>
+</table>
