@@ -1,5 +1,7 @@
 <h1>SiteMapChecker</h1>
 
+<% if @res %>
+
 <h2>
 <a href="<%== @res[:url] %>">
 <%== @res[:title] %><br>
@@ -18,3 +20,5 @@
 
 <% end %>
 </table>
+
+<% end %>
