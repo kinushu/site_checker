@@ -20,11 +20,11 @@ URL：<input type="text" name="url" value="<%== @url.to_s %>" size="80">
 
 <table border=1 >
 <%
-	@res[:links].each do |href,value|
+	@res[:links].each do |href,link|
 %>
 	<tr>
-		<td><a href="<%== href %>"><%== href %></a></td>
-		<td><%== value[:text] %></td>
+		<td><a href="<%== link.real_href %>"><%== href %></a></td>
+		<td><%== link.text %></td>
 	</tr>
 
 <% end %>
