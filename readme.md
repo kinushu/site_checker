@@ -19,6 +19,9 @@ a application template based by sinatra(padrino).
 bundle exec guard -i
 ```
 
+accces to:
+http://localhost:9393
+
 ## Install
 
 ```
@@ -33,7 +36,7 @@ app/views
 
 ### Assets
 
-scss files in 'assets' is compiled to 'public/css'
+scss files in 'assets/scss/' is compiled to 'public/css'
 
 ## Licence
 

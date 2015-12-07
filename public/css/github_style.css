@@ -976,12 +976,3 @@ body .markdown-body {
     page-break-after: avoid;
   }
 }
-/* Color Definition
-================================================== */
-.red {
-  color: red;
-}
-
-.blue {
-  color: blue;
-}
