@@ -20,7 +20,7 @@ describe 'KpctoonApp' do
     end
 
     describe "/" do
-      let(:url){'/?url=http%3A%2F%2Fwww.susanooshinwa.jp%2F'}
+      let(:url){'/?url=http%3A%2F%2Fwww.kpctoon.com%2F'}
       it "表示可能" do
         expect(subject).to be_ok
       end
