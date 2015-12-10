@@ -5,7 +5,7 @@ require 'json'
 
 module SiteParser
 
-  class Link
+  class LinkInfo
     def initialize(href:"", text:"", uri:nil)
       @conf = {
         href: href,
@@ -59,7 +59,7 @@ module SiteParser
       uri = URI.parse(href)
       next if uri.host # hostがある場合、外部リンクとして無視する
 
-      links[href] = Link.new(href: href, text: node.text, uri: uri)
+      links[href] = LinkInfo.new(href: href, text: node.text, uri: uri)
 
     end
     result[:links] = links.sort.to_h

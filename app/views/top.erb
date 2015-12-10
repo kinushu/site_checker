@@ -27,12 +27,13 @@ fragment: <%== @uri_info.fragment.to_s %><br>
 
 <table border=1 >
 <%
-	@res[:links].each do |href,link|
+	@links.each do |link|
 %>
 	<tr>
-		<td><a target="_blank" href="/?url=<%== link.real_href %>">check</a></td>
-		<td><a target="_blank" href="<%== link.real_href %>"><%== href %></a></td>
-		<td><%== link.text %></td>
+		<td><a target="" href="/?url=<%== link.real_href %>">chk</a></td>
+		<td><%== link.checked_at.to_s %></td>
+		<td><a target="_blank" href="<%== link.real_href %>"><%== link.uri_path %></a></td>
+		<td><%== link.title %></td>
 	</tr>
 
 <% end %>

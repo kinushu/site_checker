@@ -27,6 +27,8 @@ gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 group :development do
+  gem 'pry-byebug'
+
   gem 'shotgun'
 
   gem "guard", "~> 2.0", require: false

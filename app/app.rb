@@ -13,14 +13,50 @@ module Kpckara
       @app_config = settings.config
     end
 
+    def to_url_path_with(uri)
+      path = [uri.path, '?', uri.query, '#', uri.fragment].join
+      path
+    end
+
+    def prepare
+      return unless @url 
+
+      @uri_info = URI.parse(@url)
+      tgt_link = 
+        Link.where( 
+          {uri_host: @uri_info.host, uri_path: to_url_path_with(@uri_info)} ).first_or_initialize
+      tgt_link.update!(
+        title: requestee)
+
+
+
+      @res = SiteParser::parse_url(@url)
+      @res[:links].each do |href, info|
+        # p info
+        uri = URI.parse(info.href)
+        path = to_url_path_with(uri)
+        link = 
+          Link.where( 
+            {uri_host: @uri_info.host, uri_path: path} ).first_or_initialize
+#        p link
+
+        unless link.persisted?
+          link.update!(title: info.text)
+
+#          p "saved"
+#          p link
+        end
+      end
+
+      @links = Link.where(uri_host: @uri_info.host).order(:uri_path)
+
+    end
+
     # トップページ
     get '/' do
       @url = params[:url] # "/Users/kinukawa/develop/helper/sitemap_creator/check.html"
-      if @url
-          @res = SiteParser::parse_url(@url)
-      #    puts JSON.pretty_generate(res)
-        @uri_info = URI.parse(@url)
-      end
+
+      prepare
 
       erb :top, :layout => :default
     end
