@@ -14,8 +14,10 @@ module Kpckara
     end
 
     def to_url_path_with(uri)
-      path = [uri.path, '?', uri.query, '#', uri.fragment].join
-      path
+      path = uri.path
+      path << ['?', uri.query].join if uri.query
+      path << ['#', uri.fragment].join if uri.fragment
+      return path
     end
 
     def prepare

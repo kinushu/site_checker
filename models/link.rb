@@ -3,7 +3,9 @@ class Link < ActiveRecord::Base
 
   def real_href
     scheme = "http"
-    [scheme, "://", uri_host, uri_path].join
+    head = [scheme, "://", uri_host].join
+    path = File.join(head, uri_path.to_s)
+    path
   end
 
 end
