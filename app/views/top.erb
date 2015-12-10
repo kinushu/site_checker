@@ -20,6 +20,10 @@ URL：<input type="text" name="url" value="<%== @url.to_s %>" size="80">
 <%== @res[:url] %>
 </a>
 </h2>
+host:  <%== @uri_info.host.to_s %><br>
+path:  <%== @uri_info.path.to_s %><br>
+query: <%== @uri_info.query.to_s %><br>
+fragment: <%== @uri_info.fragment.to_s %><br>
 
 <table border=1 >
 <%

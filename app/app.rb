@@ -19,6 +19,7 @@ module Kpckara
       if @url
           @res = SiteParser::parse_url(@url)
       #    puts JSON.pretty_generate(res)
+        @uri_info = URI.parse(@url)
       end
 
       erb :top, :layout => :default

@@ -56,6 +56,9 @@ module SiteParser
       href = node[:href].to_s
       next if href.size == 0
 
+      uri = URI.parse(href)
+      next if uri.host # hostがある場合、外部リンクとして無視する
+
       links[href] = Link.new(href: href, text: node.text, uri: uri)
 
     end
