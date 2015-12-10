@@ -22,15 +22,14 @@ module Kpckara
       return unless @url 
 
       @uri_info = URI.parse(@url)
+      @res = SiteParser::parse_url(@url)
+
       tgt_link = 
         Link.where( 
           {uri_host: @uri_info.host, uri_path: to_url_path_with(@uri_info)} ).first_or_initialize
       tgt_link.update!(
-        title: requestee)
+        title: @res[:title], checked_at: Time.now )
 
-
-
-      @res = SiteParser::parse_url(@url)
       @res[:links].each do |href, info|
         # p info
         uri = URI.parse(info.href)
