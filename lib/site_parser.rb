@@ -33,12 +33,11 @@ module SiteParser
 
     uri = URI.parse(url)
 
-    charset = nil
-    html = open(url) do |f|
-    #  charset = f.charset
-      f.read
-    end
-    doc = Nokogiri::HTML.parse(html, nil, charset)
+    src_charset = open(url).charset
+    dst_charset = "utf-8"
+    html = open(url, 'r:binary').read.encode(dst_charset, src_charset, :invalid => :replace, :undef => :replace)
+
+    doc = Nokogiri::HTML.parse(html, nil, dst_charset)
 
     result = {
       url: url,
