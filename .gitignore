@@ -7,3 +7,4 @@ vendor/gems/*
 db/*.db
 .*.sw*
 readme.html
+.idea
