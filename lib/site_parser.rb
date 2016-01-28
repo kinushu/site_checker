@@ -57,11 +57,6 @@ module SiteParser
 
       uri = URI.parse(href) rescue nil
       next unless uri
-      # begin
-      #   uri = URI.parse(href)
-      # rescue
-      #   raise "#{href}のparseに失敗"
-      # end
 
       next if uri.host # hostがある場合、外部リンクとして無視する
 
