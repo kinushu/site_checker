@@ -9,7 +9,7 @@ module SiteParser
     def initialize(href:"", text:"", uri:nil)
       @conf = {
         href: href,
-        text: text,
+        text: text || "",
         uri:  uri,
       }
     end
@@ -31,7 +31,7 @@ module SiteParser
 
   def parse_url(url)
 
-    uri = URI.parse(url)
+    request_uri = URI.parse(url)
 
     src_charset = open(url).charset
     dst_charset = "utf-8"
@@ -45,6 +45,7 @@ module SiteParser
 
     # 確認開始
     find_path = %*//title*
+    result[:title] = url.to_s
     doc.xpath(find_path).each do |node|
       result[:title] = node.text
     end
@@ -59,6 +60,14 @@ module SiteParser
       next unless uri
 
       next if uri.host # hostがある場合、外部リンクとして無視する
+
+      now_path = uri.path
+      next if now_path.blank?
+
+      if now_path[0] == '.' || now_path[0] != '/'
+        href = URI.join(request_uri.to_s, uri.path).to_s
+        uri = URI.parse(href)
+      end
 
       links[href] = LinkInfo.new(href: href, text: node.text, uri: uri)
 
