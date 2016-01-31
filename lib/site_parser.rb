@@ -59,7 +59,11 @@ module SiteParser
       uri = URI.parse(href) rescue nil
       next unless uri
 
-      next if uri.host # hostがある場合、外部リンクとして無視する
+      if request_uri.host == uri.host
+        uri.host = ""
+      end
+
+      next if uri.host.present? # hostがある場合、外部リンクとして無視する
 
       now_path = uri.path
       next if now_path.blank?
