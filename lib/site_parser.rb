@@ -29,6 +29,13 @@ module SiteParser
 
   module_function
 
+  def to_url_path_with(uri)
+    path = uri.path
+    path << ['?', uri.query].join if uri.query
+    path << ['#', uri.fragment].join if uri.fragment
+    return path
+  end
+
   def parse_url(url)
 
     request_uri = URI.parse(url)
@@ -60,7 +67,8 @@ module SiteParser
       next unless uri
 
       if request_uri.host == uri.host
-        uri.host = ""
+        new_url = to_url_path_with(uri)
+        uri = URI.parse(new_url)
       end
 
       next if uri.host.present? # hostがある場合、外部リンクとして無視する
