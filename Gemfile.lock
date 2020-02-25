@@ -83,7 +83,7 @@ GEM
     mustermann19 (0.4.0)
       enumerable-lazy
     nenv (0.2.0)
-    nokogiri (1.10.4)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     notiffany (0.0.8)
       nenv (~> 0.1)
