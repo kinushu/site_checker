@@ -40,6 +40,6 @@ group :development do
 end
 
 # Padrino Stable Gem
-gem 'padrino', '0.13.0'
+gem 'padrino'
 
 gem "nokogiri"
